@@ -12,10 +12,11 @@ print(chem)
 
 country = chem.groupby('Nationality[B]').size().reset_index(name='counts')
 
-# cleaning based on nationalities given
+## cleaning based on the text data in the table
 
 cleaned_country = country
-cleaned_country = cleaned_country.replace('  ', ';', regex=True)
+cleaned_country = cleaned_country[cleaned_country['Nationality[B]'] != 'Not awarded'] # remove 'not awarded' from the data
+cleaned_country = cleaned_country.replace('  ', ';', regex=True) # shows dual nationalities as nationality a;nationality b
 cleaned_country = cleaned_country.replace('West German', 'German', regex=True)
 cleaned_country = cleaned_country.replace('\[', '', regex=True)
 cleaned_country = cleaned_country.replace('\]', '', regex=True)
@@ -29,7 +30,7 @@ cleaned_country = cleaned_country.replace('8', '', regex=True)
 ## split dual nationalities and create a new dataframe
 all_nationalities = []
 for index, row in cleaned_country.iterrows():
-    nationalities = row['Nationality[B]'].split(';')  # Split by semicolon
+    nationalities = row['Nationality[B]'].split(';')  # split by semicolon
     for nationality in nationalities:
         all_nationalities.append({'Country': nationality, 'counts': row['counts']})
 
@@ -38,7 +39,6 @@ split_country = pd.DataFrame(all_nationalities)
 ## group by country and sum counts
 
 final_country = split_country.groupby('Country')['counts'].sum().reset_index()
-final_country = final_country[final_country['Country'] != 'Not awarded']
 
 # now sort it in descending order
 
