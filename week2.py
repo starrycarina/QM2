@@ -12,7 +12,7 @@ print(chem)
 
 country = chem.groupby('Nationality[B]').size().reset_index(name='counts')
 
-## cleaning based on the text data in the table
+## cleaning based on the text data we have
 
 cleaned_country = country
 cleaned_country = cleaned_country[cleaned_country['Nationality[B]'] != 'Not awarded'] # remove 'not awarded' from the data
