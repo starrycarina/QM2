@@ -68,10 +68,12 @@ def calculate_confidence_interval(sample_means_list):
     return lower_ci, upper_ci
 
 
+whitemenHS=df[(df['sex']==1) & (df['race']==1) & (df['sch']==12)]['income']
+hispanicwomenBA = df[(df['sex']==2) & (df['race']==3) & (df['sch']==16)]['income']
+
 modified_two_hist([whitemenHS,hispanicwomenBA], ['White Men with a High School Diploma','Hispanic Women with a Bachelors'],'Income ($, thousands)', "Income Sample Means")
 
 
-whitemenHS=df[(df['sex']==1) & (df['race']==1) & (df['sch']==12)]['income']
-hispanicwomenBA = df[(df['sex']==2) & (df['race']==3) & (df['sch']==14)]['income']
+
 
 modified_two_hist([whitemenHS,hispanicwomenBA], ['White Men with a High School Diploma','Hispanic Women with a Bachelors'],'Income ($, thousands)', "Income Sample Means")
