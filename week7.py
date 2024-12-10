@@ -27,7 +27,7 @@ t_statistic, p_value = ttest_ind(log_realhrwage_2, log_realhrwage_3)
 print(f"T-statistic: {t_statistic}")
 print(f"P-value: {p_value}")
 
-alpha = 0.05  # Significance level
+alpha = 0.01  # Significance level
 
 if p_value < alpha:
     print("The difference in means is statistically significant.")
